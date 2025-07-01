@@ -1,14 +1,14 @@
 package ru.OpenWeather.security;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.OpenWeather.models.User;
 
 import java.util.Collection;
 import java.util.List;
 
 public class UserDetailsSecurity implements UserDetails {
-    private final User user;
+    private final ru.OpenWeather.models.User user;
 
     public UserDetailsSecurity(User user) {
         this.user = user;
@@ -26,7 +26,7 @@ public class UserDetailsSecurity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.getUsername();
+        return this.user.getLogin();
     }
 
     @Override
@@ -47,5 +47,9 @@ public class UserDetailsSecurity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public User getUser() {
+        return this.user;
     }
 }

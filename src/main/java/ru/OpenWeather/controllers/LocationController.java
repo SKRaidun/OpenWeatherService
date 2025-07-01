@@ -56,19 +56,20 @@ public class LocationController {
 
     @GetMapping()
     public String login(Model model, HttpServletRequest request){
-        if (!sessionValidator.hasValidSession(request)) {
-            return "redirect:/login";
-        }
-
-        List<Location> locations = null;
-
-        User user = sessionValidator.findUserBySession(request);
-        try {
-            locations = locationDAO.findLocationsByUserId(user.getId());
-        } catch (NullPointerException e) {}
-
-        model.addAttribute("locations", locations);
-        model.addAttribute("username", user.getLogin());
+//        if (!sessionValidator.hasValidSession(request)) {
+//            return "redirect:/login";
+//        }
+//
+//        List<Location> locations = null;
+//
+//        User user = sessionValidator.findUserBySession(request);
+//        try {
+//            locations = locationDAO.findLocationsByUserId(user.getId());
+//        } catch (NullPointerException e) {}
+//
+//        model.addAttribute("locations", locations);
+//        model.addAttribute("username", user.getLogin());
+        System.out.println("OAPOAPA");
         return "index";
     }
 

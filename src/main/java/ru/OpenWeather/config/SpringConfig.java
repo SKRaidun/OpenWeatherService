@@ -9,9 +9,12 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import org.thymeleaf.spring6.SpringTemplateEngine;
@@ -39,6 +42,17 @@ public class SpringConfig implements WebMvcConfigurer {
         this.env = env;
     }
 
+//    public void addViewControllers(ViewControllerRegistry registry) {
+//        registry.addViewController("/login").setViewName("sign-in");
+//        registry.addViewController("/weather-service").setViewName("index");
+//    }
+//
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/resources/**")
+//                .addResourceLocations("/resources/");
+//    }
+
+
     @Bean
     public SpringResourceTemplateResolver templateResolver(){
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
@@ -47,6 +61,7 @@ public class SpringConfig implements WebMvcConfigurer {
         templateResolver.setSuffix(".html");
         return templateResolver;
     }
+
 
     @Bean
     public SpringTemplateEngine templateEngine() {

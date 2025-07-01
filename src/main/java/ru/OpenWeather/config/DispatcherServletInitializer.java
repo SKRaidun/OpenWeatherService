@@ -3,6 +3,7 @@ package ru.OpenWeather.config;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import org.jspecify.annotations.Nullable;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -26,10 +27,12 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
         registerHiddenFieldFilter(servletContext);
+
     }
 
     private void registerHiddenFieldFilter(ServletContext servletContext) {
-        servletContext.addFilter("hiddenHttpMethodFilter",
-                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
+        servletContext.addFilter("springSecurityFilterChain",
+                        new DelegatingFilterProxy("springSecurityFilterChain"))
+                .addMappingForUrlPatterns(null, false, "/*");
     }
 }

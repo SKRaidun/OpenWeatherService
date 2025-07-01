@@ -11,6 +11,7 @@ import ru.OpenWeather.models.Sessions;
 import ru.OpenWeather.models.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UserDAO {
@@ -61,6 +62,21 @@ public class UserDAO {
             if (users.get(0).getPassword().equals(password)) {
                 return users.get(0);
             }
+        }
+        return null;
+    }
+
+    @Transactional(readOnly = true)
+    public User findUser(String userLogin) {
+        Session session = sessionFactory.getCurrentSession();
+
+        String hql = "From User u WHERE u.login = :login";
+        TypedQuery<User> query = session.createQuery(hql, User.class);
+        query.setParameter("login", userLogin);
+        List<User> users = query.getResultList();
+
+        if (!users.isEmpty()) {
+            return users.get(0);
         }
         return null;
     }
