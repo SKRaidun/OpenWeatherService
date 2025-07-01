@@ -4,21 +4,17 @@
 
 ## Стек
 
-![Java](https://img.shields.io/badge/java-59666C.svg?style=for-the-badge&logo=openjdk&logoColor=white)
-![Jakarta EE](https://img.shields.io/badge/jakarta_ee-59666C?style=for-the-badge&labelColor=white)
-![MVC(S)](https://img.shields.io/badge/mvc(s)-59666C?style=for-the-badge&labelColor=white)
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
 ![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)
 ![JPA](https://img.shields.io/badge/jpa-59666C?style=for-the-badge&labelColor=white)
-![HikariCP](https://img.shields.io/badge/hikari_cp-59666C.svg?style=for-the-badge)
-![Postgres](https://img.shields.io/badge/postgres-59666C.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-![HTTP](https://img.shields.io/badge/http-59666C?style=for-the-badge&labelColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Rest Api](https://img.shields.io/badge/REST%20API-59666C?style=for-the-badge&labelColor=white)
 ![JSON](https://img.shields.io/badge/json-59666C?style=for-the-badge&labelColor=white)
-![Apache Maven](https://img.shields.io/badge/Apache%20Maven-59666C?style=for-the-badge&logo=Apache%20Maven&logoColor=white)
-![HTML](https://img.shields.io/badge/HTML-59666C?style=for-the-badge&logo=html5&logoColor=white)
-![CSS](https://img.shields.io/badge/CSS-59666C?&style=for-the-badge&logo=css3&logoColor=white)
-![Thymeleaf](https://img.shields.io/badge/thymeleaf-59666C?style=for-the-badge&logo=thymeleaf)
-![JUnit5](https://img.shields.io/badge/junit-59666C?style=for-the-badge&logo=junit5&logoColor=white)
+![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![Thymeleaf](https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white)
 
 
 ## Демонстрация работы приложения
