@@ -31,44 +31,12 @@ public class UserController {
         this.sessionValidator = sessionValidator;
     }
 
-//    private HttpServletResponse setCookie(Sessions session, HttpServletResponse response) {
-//        Cookie cookie = new Cookie("ID", String.valueOf(session.getId()));
-//        response.addCookie(cookie);
-//        return response;
-//    }
 
     @GetMapping()
     public String login(HttpServletRequest request){
-//        if (sessionValidator.hasValidSession(request)) {
-//            return "redirect:/weather-service";
-//        }
         return "sign-in";
     }
 
-//    @PostMapping()
-//    public String signIn(Model model, @ModelAttribute("user") User user, HttpServletResponse response) {
-//
-//        model.addAttribute("user");
-//
-//        String userLogin = user.getLogin();
-//        String password = user.getPassword();
-//
-//        User loginUser = dao.findUser(userLogin, password);
-//        if(loginUser == null) {
-//            return "sign-in-with-errors";
-//        }
-//
-//        if (dao.findSessionByID(loginUser) == null) {
-//            sessionDAO.createSession(loginUser);
-//        }
-//
-//        System.out.println(loginUser.getSession().getId());
-//        System.out.println(loginUser.getSession().getExpiresAt());
-//
-//        HttpServletResponse newResponse = setCookie(loginUser.getSession(), response);
-//
-//        return "redirect:/weather-service";
-//    }
 
 //    @GetMapping("/signup")
 //    public String signUp(HttpServletRequest request) {

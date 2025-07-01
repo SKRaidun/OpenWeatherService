@@ -42,16 +42,6 @@ public class SpringConfig implements WebMvcConfigurer {
         this.env = env;
     }
 
-//    public void addViewControllers(ViewControllerRegistry registry) {
-//        registry.addViewController("/login").setViewName("sign-in");
-//        registry.addViewController("/weather-service").setViewName("index");
-//    }
-//
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/resources/**")
-//                .addResourceLocations("/resources/");
-//    }
-
 
     @Bean
     public SpringResourceTemplateResolver templateResolver(){
