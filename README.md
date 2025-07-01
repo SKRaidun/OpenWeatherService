@@ -23,6 +23,10 @@
 
 ## Основные функции
 
+## Демонстрация работы приложения
+
+![](https://github.com/SKRaidun/OpenWeatherService/blob/main/ScreenCast.gif)
+
 ### Работа с пользователями:
 - Регистрация
 - Авторизация
