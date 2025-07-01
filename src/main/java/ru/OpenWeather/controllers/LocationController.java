@@ -1,8 +1,6 @@
 package ru.OpenWeather.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import jakarta.servlet.http.Cookie;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.OpenWeather.DAO.LocationDAO;
 import ru.OpenWeather.DAO.SessionDAO;
 import ru.OpenWeather.DAO.UserDAO;
-import ru.OpenWeather.DTO.UserValidator;
 import ru.OpenWeather.models.Location;
 import ru.OpenWeather.models.Sessions;
 import ru.OpenWeather.models.User;
@@ -29,6 +26,9 @@ import java.net.http.HttpResponse;
 import java.nio.file.Path;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -80,6 +80,7 @@ public class LocationController {
             sessionDAO.deleteSessionById(user.getSession());
             user.setSession(null);
         }
+
         request.getSession().invalidate();
         return "redirect:/login";
     }
