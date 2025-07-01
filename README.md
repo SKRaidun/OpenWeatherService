@@ -21,11 +21,11 @@
 ![JUnit5](https://img.shields.io/badge/junit-59666C?style=for-the-badge&logo=junit5&logoColor=white)
 
 
-## Основные функции
-
 ## Демонстрация работы приложения
 
 ![](https://github.com/SKRaidun/OpenWeatherService/blob/main/ScreenCast.gif)
+
+## Основные функции
 
 ### Работа с пользователями:
 - Регистрация
