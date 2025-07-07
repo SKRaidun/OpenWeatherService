@@ -23,7 +23,7 @@
     </div>
 </nav>
 
-<form th:method="POST" th:action="@{/weather-service}">
+<form th:method="POST" th:action="@{/weather-service}" id="searchForm">
     <section id="page-content">
         <div class="container mt-4">
             <div class="d-flex my-4">
@@ -34,35 +34,36 @@
                         &times;
                     </button>
                 </div>
-                <button class="btn btn-outline-success">Search</button>
-            </div>
-
-            <div>
-                <div class="row">
-                    <div class="col-12 col-lg-3 col-md-6 mb-4" th:each="location : ${locations}">
-                        <div class="card h-100 position-relative weather-card">
-                            <div class="position-absolute weather-card-delete-form">
-                                <form th:action="@{/weather-service/delete-location}" method="post">
-                                    <input type="hidden" th:name="id" th:value="${location.id}" />
-                                    <button class="btn-close" aria-label="Delete"></button>
-                                </form>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h1 class="card-text" th:text="${location.temperature + '°C'}">7°C</h1>
-                                <h3 class="card-title" th:text="${location.name} ">City</h3>
-                                <p class="card-text mb-1">
-                                    Feels like <span th:text="${location.feelsLike}">2</span>°C.
-                                    <span th:text="${location.description}">Clear sky</span>
-                                </p>
-                                <p class="card-text mb-1">Humidity: <span th:text="${location.humidity}">70</span>%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button class="btn btn-outline-success" type="submit">Search</button>
             </div>
         </div>
     </section>
 </form>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 col-lg-3 col-md-6 mb-4" th:each="location : ${locations}">
+            <div class="card h-100 position-relative weather-card">
+                <!-- Форма удаления -->
+                <div class="position-absolute weather-card-delete-form">
+                    <form th:action="@{/weather-service/delete-location}" method="post">
+                        <input type="hidden" name="id" th:value="${location.id}">
+                        <button class="btn-close" aria-label="Delete"></button>
+                    </form>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h1 class="card-text" th:text="${location.temperature + '°C'}">7°C</h1>
+                    <h3 class="card-title" th:text="${location.name}">City</h3>
+                    <p class="card-text mb-1">
+                        Feels like <span th:text="${location.feelsLike}">2</span>°C.
+                        <span th:text="${location.description}">Clear sky</span>
+                    </p>
+                    <p class="card-text mb-1">Humidity: <span th:text="${location.humidity}">70</span>%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4 border-top">
     <div class="px-4">
