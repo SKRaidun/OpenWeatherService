@@ -23,7 +23,6 @@
     </div>
 </nav>
 
-<form th:method="POST" th:action="@{/weather-service}">
     <section id="page-content">
         <div class="container mt-4">
             <div class="d-flex my-4">
@@ -41,7 +40,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-3 col-md-6 mb-4" th:each="location : ${locations}">
                         <div class="card h-100 position-relative weather-card">
-                            <div class="position-absolute weather-card-delete-form">
+                            <div class="position-absolute weather-card-delete-form" th:if="${location.id != null}">
                                 <form th:action="@{/weather-service/delete-location}" method="post">
                                     <input type="hidden" name="id" th:value="${location.id}" />
                                     <button class="btn-close" aria-label="Delete"></button>
@@ -62,7 +61,6 @@
             </div>
         </div>
     </section>
-</form>
 
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4 border-top">
     <div class="px-4">
