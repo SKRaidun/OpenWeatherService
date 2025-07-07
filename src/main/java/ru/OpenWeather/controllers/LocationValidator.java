@@ -12,7 +12,6 @@ import ru.OpenWeather.models.Location;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
-import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
@@ -52,7 +51,6 @@ public class LocationValidator {
             location.setDescription(description);
             location.setHumidity(humidity);
 
-            System.out.println(location.getTemperature());
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

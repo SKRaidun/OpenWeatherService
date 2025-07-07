@@ -4,6 +4,9 @@ package ru.OpenWeather.controllers;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import ru.OpenWeather.DAO.UserDAO;
 import ru.OpenWeather.models.Location;
 import ru.OpenWeather.models.Sessions;
 import ru.OpenWeather.models.User;
+import ru.OpenWeather.security.UserDetailsSecurity;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,65 +59,66 @@ public class LocationController {
 
 
     @GetMapping()
-    public String login(Model model, HttpServletRequest request){
-//        if (!sessionValidator.hasValidSession(request)) {
-//            return "redirect:/login";
-//        }
-//
-//        List<Location> locations = null;
-//
-//        User user = sessionValidator.findUserBySession(request);
-//        try {
-//            locations = locationDAO.findLocationsByUserId(user.getId());
-//        } catch (NullPointerException e) {}
-//
-//        model.addAttribute("locations", locations);
-//        model.addAttribute("username", user.getLogin());
-        System.out.println("OAPOAPA");
+    public String login(Model model, HttpServletRequest request, @AuthenticationPrincipal UserDetailsSecurity userDetailsSecurity) {
+
+        User user = userDetailsSecurity.getUser();
+
+        List<Location> locations = null;
+
+        try {
+            locations = locationDAO.findLocationsByUserId(user.getId());
+        } catch (NullPointerException e) {}
+
+        for (Location loc : locations) {
+            System.out.println(loc.getId());
+        }
+
+        model.addAttribute("locations", locations);
+        model.addAttribute("username", user.getLogin());
+
         return "index";
     }
 
     @PostMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
-        User user = sessionValidator.findUserBySession(request);
-        if (user != null && user.getSession() != null) {
-            sessionDAO.deleteSessionById(user.getSession());
-            user.setSession(null);
-        }
-
-        request.getSession().invalidate();
+    public String logout(HttpServletRequest request, HttpServletResponse response, @AuthenticationPrincipal UserDetailsSecurity userDetailsSecurity) {
+        User user = userDetailsSecurity.getUser();
         return "redirect:/login";
     }
 
 
     @PostMapping()
-    private String addLocation(Model model, @ModelAttribute("location") String location, HttpServletRequest request) throws IOException, InterruptedException {
+    private String addLocation(Model model, @ModelAttribute("location") String location, HttpServletRequest request, @AuthenticationPrincipal UserDetailsSecurity userDetailsSecurity) throws IOException, InterruptedException {
         Location newLocation = locationValidator.findLocationWithAPI(location);
 
+        System.out.println("SISA");
+
         if (newLocation == null) {
-            return "redirect:/login";
+            return "redirect:/weather-service";
         }
 
-        User user = sessionValidator.findUserBySession(request);
+        User user = userDetailsSecurity.getUser();
         String locationName = newLocation.getName();
         int userID = user.getId();
-        if (locationDAO.findLocationByNameAndId(locationName, userID)) return "redirect:/login";
+        if (locationDAO.findLocationByNameAndId(locationName, userID)) return "redirect:/weather-service";
         newLocation.setUser(user);
         locationDAO.createLocation(newLocation);
 
-        return "redirect:/login";
+        return "redirect:/weather-service";
     }
 
 
 
     @PostMapping("/delete-location")
     public String deleteLocationById(@RequestParam("id") int locationId,
-                                 HttpServletRequest request) {
-        if (!sessionValidator.hasValidSession(request)) {
-            return "redirect:/login";
-        }
+                                 HttpServletRequest request, @AuthenticationPrincipal UserDetailsSecurity userDetailsSecurity) {
 
-        User user = sessionValidator.findUserBySession(request);
+
+        System.out.println("UUUUUUUUU");
+        System.out.println(locationId);
+        User user = userDetailsSecurity.getUser();
+
+        System.out.println("POPA");
+        System.out.println(locationId);
 
         boolean userOwnsLocation = locationDAO.findLocationsByUserId(user.getId())
                 .stream()
