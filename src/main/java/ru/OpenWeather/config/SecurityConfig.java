@@ -31,7 +31,7 @@ public class SecurityConfig {
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/login", "/weather-service", "/resources/**").permitAll()
+                        .requestMatchers("/", "/resources/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
@@ -41,7 +41,7 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/weather-service")
                         .failureUrl("/login")
                 )
-                .logout((logout) -> logout.permitAll());
+                .logout((logout) -> logout.logoutUrl("/weather-service/logout"));
         return http.build();
     }
 
